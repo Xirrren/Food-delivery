@@ -25,6 +25,11 @@ public class PlayerCharacter : MonoBehaviour
 
     private bool isDashing;
 
+    [SerializeField]
+    private bool foodInHand;
+
+    public bool FoodInHand => foodInHand;
+
 #endregion
 
 #region Unity events
@@ -40,14 +45,31 @@ public class PlayerCharacter : MonoBehaviour
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical   = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(horizontal , vertical).normalized;
-        if (moveDirection != Vector2.zero && isDashing == false) 
-            dashDirection = new Vector2(horizontal , vertical).normalized;
+        if (moveDirection != Vector2.zero && isDashing == false) dashDirection = new Vector2(horizontal , vertical).normalized;
         if (Input.GetKeyDown(KeyCode.Space) && isDashing == false)
         {
             if (dashDirection == Vector2.zero) dashDirection = Vector2.right;
             isDashing = true;
             Invoke(nameof(ResetDashCooldown) , dashCooldown);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (!isDashing) return;
+        if (foodInHand) return;
+        if (col.gameObject.TryGetComponent(out PlayerCharacter player))
+        {
+            if (player.foodInHand == false) return;
+            Debug.Log($"{col.gameObject.name}");
+            foodInHand = true;
+            player.DropFood();
+        }
+    }
+
+    private void DropFood()
+    {
+        foodInHand = false;
     }
 
 #endregion
