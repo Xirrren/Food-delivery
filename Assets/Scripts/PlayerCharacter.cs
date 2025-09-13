@@ -30,25 +30,33 @@ public class PlayerCharacter : MonoBehaviour
 
     private bool canMove;
 
+    [SerializeField]
+    private int playerIndex;
+
+    
+
 #endregion
 
 #region Unity events
 
     void Start()
     {
-        rb      = GetComponent<Rigidbody2D>();
-        canDash = true;
-        canMove = true;
+        rb          = GetComponent<Rigidbody2D>();
+        canDash     = true;
+        canMove     = true;
+        dashKeyCode = playerIndex == 1 ? KeyCode.Space : KeyCode.RightControl;
     }
+
+    private KeyCode dashKeyCode;
 
     private void Update()
     {
         if (canMove == false) return;
-        var horizontal = Input.GetAxisRaw("Horizontal");
-        var vertical   = Input.GetAxisRaw("Vertical");
+        var horizontal = Input.GetAxisRaw($"Horizontal{playerIndex}");
+        var vertical   = Input.GetAxisRaw($"Vertical{playerIndex}");
         moveDirection = new Vector2(horizontal , vertical).normalized;
         if (moveDirection != Vector2.zero && isDashing == false) dashDirection = new Vector2(horizontal , vertical).normalized;
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(dashKeyCode) && canDash)
         {
             if (dashDirection == Vector2.zero) dashDirection = Vector2.right;
             isDashing = true;

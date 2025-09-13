@@ -130,6 +130,7 @@ MonoBehaviour:
   dashSpeed: 13
   moveSpeed: 5
   foodInHand: 0
+  playerIndex: 1
 --- !u!58 &1556558161158082971
 CircleCollider2D:
   m_ObjectHideFlags: 0
