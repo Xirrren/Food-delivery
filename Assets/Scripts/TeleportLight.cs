@@ -36,5 +36,10 @@ namespace DefaultNamespace
         {
             canTeleport = false;
         }
+
+        public void SetPair(TeleportLight teleportLight)
+        {
+            pairTeleportLight = teleportLight;
+        }
     }
 }
