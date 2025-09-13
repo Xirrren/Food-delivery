@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 public class MealDeliveryControl : MonoBehaviour
 {
-    public GameObject food, ordering;
+    public GameObject food;
     
     public Transform foodOutletA,foodOutletB;
     
     private bool hasSpawned = false;
 
-    public Button orderBtn;
     void Start()
     {
-        orderBtn.onClick.AddListener(SpawnOrdering);
     }
 
     void Update()
@@ -37,10 +35,5 @@ public class MealDeliveryControl : MonoBehaviour
         Instantiate(food,target.position,target.rotation);
         
         Debug.Log("Food生成於" + target.name);
-    }
-
-    void SpawnOrdering()
-    {
-        ordering.SetActive(true);
     }
 }
