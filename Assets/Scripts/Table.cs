@@ -21,6 +21,7 @@ public class Table : MonoBehaviour
         if (other.CompareTag("Food"))
         {
             OrderingController.instance.CompleteDelivery(other.gameObject);
+            MealDeliveryControl.instance.DestroyFood();
         }
 
     }

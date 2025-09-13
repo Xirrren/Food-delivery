@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class MealDeliveryControl : MonoBehaviour
 {
+    public static MealDeliveryControl instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     public GameObject food;
     
     public Transform foodOutletA,foodOutletB;
     
     private bool hasSpawned = false;
-
-    void Start()
-    {
-    }
+    
+    private GameObject currentFood;
 
     void Update()
     {
@@ -28,12 +35,22 @@ public class MealDeliveryControl : MonoBehaviour
         }
     }
 
-    void SpawnFood()
+    public void SpawnFood()
     {
         Transform target = Random.value > 0.5f ? foodOutletA : foodOutletB;
         
-        Instantiate(food,target.position,target.rotation);
+        currentFood = Instantiate(food,target.position,target.rotation);
         
         Debug.Log("Food生成於" + target.name);
+    }
+    
+    public void DestroyFood()
+    {
+        if (currentFood != null)
+        {
+            Destroy(currentFood);
+            currentFood = null;
+            hasSpawned = false;
+        }
     }
 }
