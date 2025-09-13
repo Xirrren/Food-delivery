@@ -69,14 +69,12 @@ public class OrderingController : MonoBehaviour
         }
     }
 
-    public void CompleteDelivery(GameObject deliveredObj)
+    public void CompleteDelivery()
     {
-        if (deliveredObj = currentChild)
-        {
-            Debug.Log("送餐完成");
-            currentChild.SetActive(false);
-            cooldowns[currentChild.transform.parent.gameObject] = Time.time + orderCooling;
-            showRandomChild();
-        }
+        Debug.Log("送餐完成");
+        currentChild.SetActive(false);
+        MealDeliveryControl.instance.DestroyFood();
+        cooldowns[currentChild.transform.parent.gameObject] = Time.time + orderCooling;
+        StartCoroutine(showRandomChild());
     }
 }
