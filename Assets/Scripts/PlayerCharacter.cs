@@ -28,8 +28,6 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     private bool foodInHand;
 
-    public bool FoodInHand => foodInHand;
-
 #endregion
 
 #region Unity events
@@ -46,7 +44,7 @@ public class PlayerCharacter : MonoBehaviour
         var vertical   = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(horizontal , vertical).normalized;
         if (moveDirection != Vector2.zero && isDashing == false) dashDirection = new Vector2(horizontal , vertical).normalized;
-        if (Input.GetKeyDown(KeyCode.Space) && isDashing == false)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             if (dashDirection == Vector2.zero) dashDirection = Vector2.right;
             isDashing = true;
@@ -91,6 +89,7 @@ public class PlayerCharacter : MonoBehaviour
     private void ResetDashCooldown()
     {
         isDashing = false;
+        canDash   = true;
     }
 
 #endregion
