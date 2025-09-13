@@ -28,6 +28,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     private bool foodInHand;
 
+    private bool canMove;
+
 #endregion
 
 #region Unity events
@@ -36,10 +38,12 @@ public class PlayerCharacter : MonoBehaviour
     {
         rb      = GetComponent<Rigidbody2D>();
         canDash = true;
+        canMove = true;
     }
 
     private void Update()
     {
+        if (canMove == false) return;
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical   = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(horizontal , vertical).normalized;
@@ -76,6 +80,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void FixedUpdate() // Physics updates should be in FixedUpdate
     {
+        if (canMove == false) return;
         if (isDashing)
         {
             rb.velocity = dashDirection * dashSpeed;
@@ -98,5 +103,16 @@ public class PlayerCharacter : MonoBehaviour
     {
         isDashing   = false;
         rb.velocity = Vector2.zero;
+    }
+
+    public void DisableCanMove(float playerCanMoveTime)
+    {
+        canMove = false;
+        Invoke(nameof(EnableCanMove) , playerCanMoveTime);
+    }
+
+    private void EnableCanMove()
+    {
+        canMove = true;
     }
 }
