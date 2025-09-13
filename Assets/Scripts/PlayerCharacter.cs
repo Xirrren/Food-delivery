@@ -94,4 +94,10 @@ public class PlayerCharacter : MonoBehaviour
     }
 
 #endregion
+
+    public void StopDashing()
+    {
+        isDashing   = false;
+        rb.velocity = Vector2.zero;
+    }
 }
