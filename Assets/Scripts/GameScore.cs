@@ -11,7 +11,7 @@ public class GameScore : MonoBehaviour
 
     public TMP_Text p1ScoreTxt,p2ScoreTxt;
     
-    int p1Score = 0,p2Score = 0;
+    public int p1Score = 0,p2Score = 0;
     
     private void Awake()
     {
