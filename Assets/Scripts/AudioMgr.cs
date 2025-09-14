@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class AudioMgr : MonoBehaviour
@@ -12,6 +13,7 @@ public class AudioMgr : MonoBehaviour
 
     [Header("SFX")]
     public AudioSource[] sfxSources;
+    public int sfxSourcesCount = 1;
     
     [Header("Slider")]
     public Slider bgmSlider;
@@ -21,7 +23,27 @@ public class AudioMgr : MonoBehaviour
     public float bgmVolume = 1f;
     [Range(0f, 1f)]
     public float sfxVolume = 1f;
+    
+    [Header("SFX Clip")]
+    public AudioClip[] sfxClips;
     #endregion
+    
+    public enum SFXType
+    {
+        End,
+        Start,
+        Imapact,
+        Walk,
+        Place,
+        Btn,
+        Win,
+        ServingFood,
+        Dizziness,
+        MenuBtn,
+        Skill,
+        Sprint,
+        Teleport
+    }
     void Awake()
     {
         Instance = this;
@@ -33,12 +55,13 @@ public class AudioMgr : MonoBehaviour
 
         if (sfxSources == null || sfxSources.Length == 0)
         {
-            sfxSources = new AudioSource[3];
-            for (int i = 0; i < sfxSources.Length; i++)
+            sfxSources = new AudioSource[sfxSourcesCount];
+            for (int i = 0; i < sfxSourcesCount; i++)
             {
                 sfxSources[i] = gameObject.AddComponent<AudioSource>();
             }
         }
+        sfxClips = Resources.LoadAll<AudioClip>("SFX");
     }
     void Start()
     {
@@ -46,6 +69,9 @@ public class AudioMgr : MonoBehaviour
         foreach (var sfx in sfxSources)
             sfx.volume = sfxSlider.value;
 
+        bgmVolume = bgmSlider.value;
+        sfxVolume = sfxSlider.value;
+        
         bgmSlider.onValueChanged.AddListener(value =>
         {
             bgmSource.volume = value;
@@ -87,6 +113,18 @@ public class AudioMgr : MonoBehaviour
         }
         sfxSources[0].PlayOneShot(clip);
     }
+
+    public void PlaySFX(SFXType type)
+    {
+        int index = (int)type;
+        if (index < 0 || index >= sfxClips.Length)
+        {
+            return;
+        }
+        PlaySFX(sfxClips[index]);
+    }
+    
     #endregion
+    
     
 }

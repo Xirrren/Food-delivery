@@ -42,6 +42,8 @@ public class MealDeliveryControl : MonoBehaviour
         currentFood = Instantiate(food,target.position,target.rotation);
         
         Debug.Log("Food生成於" + target.name);
+        
+        AudioMgr.Instance.PlaySFX(AudioMgr.SFXType.ServingFood);
     }
     
     public void DestroyFood()
