@@ -47,6 +47,9 @@ TagManager:
   - name: Trap
     uniqueID: 3293162795
     locked: 0
+  - name: TeleportLight
+    uniqueID: 4239459365
+    locked: 0
   - name: Player
     uniqueID: 3690217605
     locked: 0
