@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class Food : MonoBehaviour
@@ -38,12 +39,14 @@ public class Food : MonoBehaviour
             string parentName = deliveredFood.transform.parent.name;
 
             if (parentName == "Player_1"){
+                PlayerCharacterController.Instance?.ClearFood();
                 Debug.Log("P1送餐完成");
                 GameScore.instance.AddP1Score();
             }
 
             if (parentName == "Player_2")
             {
+                PlayerCharacterController.Instance?.ClearFood();
                 Debug.Log("P2送餐完成");
                 GameScore.instance.AddP2Score();
             }
