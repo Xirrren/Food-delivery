@@ -13,7 +13,7 @@ public class AudioMgr : MonoBehaviour
     [Header("SFX")]
     public AudioSource[] sfxSources;
     
-    [Header("UI 音量控制")]
+    [Header("Slider")]
     public Slider bgmSlider;
     public Slider sfxSlider;
     

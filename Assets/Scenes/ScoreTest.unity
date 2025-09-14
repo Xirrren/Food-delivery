@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 47582594}
   - component: {fileID: 47582596}
   - component: {fileID: 47582595}
+  - component: {fileID: 47582597}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -475,6 +476,20 @@ MonoBehaviour:
   food: {fileID: 448581775}
   foodOutletA: {fileID: 1681812267}
   foodOutletB: {fileID: 1809146190}
+--- !u!114 &47582597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47582591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf207aed5ab08e1438ed1474633163b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1ScoreTxt: {fileID: 401813988}
+  p2ScoreTxt: {fileID: 1231645901}
 --- !u!1 &80838147
 GameObject:
   m_ObjectHideFlags: 0

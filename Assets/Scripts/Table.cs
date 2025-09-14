@@ -36,7 +36,7 @@ public class Table : MonoBehaviour
 
                     if (isVisible)
                     {
-                        OrderingController.instance.CompleteDelivery();
+                        OrderingController.instance.CompleteDelivery(gameObject);
                     }else
                     {
                         Debug.Log("送錯餐");
