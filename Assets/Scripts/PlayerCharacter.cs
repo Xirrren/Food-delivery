@@ -36,12 +36,16 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private GameObject food;
+
 #endregion
 
 #region Unity events
 
     void Start()
     {
+        food.SetActive(false);
         animator.Play("Idle");
         rb          = GetComponent<Rigidbody2D>();
         canDash     = true;
@@ -77,13 +81,19 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (!isDashing) return;
         if (foodInHand) return;
+        if (col.gameObject.TryGetComponent(out food)) GotFood();
         if (col.gameObject.TryGetComponent(out PlayerCharacter player))
         {
             if (player.foodInHand == false) return;
-            Debug.Log($"{col.gameObject.name}");
-            foodInHand = true;
             player.DropFood();
+            GotFood();
         }
+    }
+
+    private void GotFood()
+    {
+        food.SetActive(true);
+        foodInHand = true;
     }
 
     private void DropFood()
