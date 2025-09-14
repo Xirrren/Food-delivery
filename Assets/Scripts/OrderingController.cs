@@ -74,6 +74,7 @@ public class OrderingController : MonoBehaviour
     {
         Food.instance.ConfirmIdentity(deliveredFood);
         currentChild.SetActive(false);
+        Table.instance.DiningEffect();
         MealDeliveryControl.instance.DestroyFood();
         cooldowns[currentChild.transform.parent.gameObject] = Time.time + orderCooling;
         StartCoroutine(showRandomChild());

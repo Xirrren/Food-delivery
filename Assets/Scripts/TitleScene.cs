@@ -19,6 +19,7 @@ namespace DefaultNamespace
         private void EnterGame()
         {
             SceneManager.LoadScene("GameScene");
+            AudioMgr.Instance.PlaySFX(AudioMgr.SFXType.MenuBtn);
         }
     }
 }

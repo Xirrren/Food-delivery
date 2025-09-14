@@ -46,4 +46,27 @@ public class Table : MonoBehaviour
         }
     }
 
+    public void DiningEffect()
+    {
+        StartCoroutine(Act("dining",5f));
+    }
+    private IEnumerator Act(string tag,float duration)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("dining"))
+            {
+                child.gameObject.SetActive(true);
+                StartCoroutine(DeactivateAfterTime(child.gameObject,duration));
+            }
+        }
+        yield return null;
+    }
+
+    IEnumerator DeactivateAfterTime(GameObject obj, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        obj.SetActive(false);
+    }
+
 }
