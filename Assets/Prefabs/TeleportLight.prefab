@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1937672328073409540}
   - component: {fileID: 8111694526520149113}
   - component: {fileID: 2092329781309087551}
-  - component: {fileID: 2411610449788185786}
+  - component: {fileID: 5754496724704236785}
   m_Layer: 0
   m_Name: TeleportLight
   m_TagString: Untagged
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2323936430716798497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 903.19727, y: 1046.2604, z: -0.5010565}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.3725, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pairTeleportLight: {fileID: 0}
+  effectPrefab: {fileID: 3323953580090887198, guid: 737eec76eb2de0b4e8dc2b18b2de714b, type: 3}
 --- !u!212 &8111694526520149113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -86,8 +87,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -55507931
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.9141293, g: 1, b: 0.17295581, a: 1}
@@ -127,8 +128,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2411610449788185786
-CircleCollider2D:
+--- !u!70 &5754496724704236785
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,5 +161,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
+  m_Size: {x: 0.2, y: 0.2}
+  m_Direction: 0

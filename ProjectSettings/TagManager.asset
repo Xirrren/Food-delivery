@@ -47,6 +47,15 @@ TagManager:
   - name: Trap
     uniqueID: 3293162795
     locked: 0
+  - name: TeleportLight
+    uniqueID: 4239459365
+    locked: 0
+  - name: Fx
+    uniqueID: 1346686839
+    locked: 0
+  - name: Monster
+    uniqueID: 3161630081
+    locked: 0
   - name: Player
     uniqueID: 3690217605
     locked: 0

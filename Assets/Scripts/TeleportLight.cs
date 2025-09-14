@@ -1,5 +1,7 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace DefaultNamespace
 {
@@ -8,10 +10,15 @@ namespace DefaultNamespace
         [SerializeField]
         private TeleportLight pairTeleportLight;
 
+        [SerializeField]
+        private ParticleSystem effectPrefab;
+
+        
         private bool canTeleport;
 
         private void Start()
         {
+            Assert.IsNotNull(pairTeleportLight , "pairTeleportLight is empty.");
             canTeleport = true;
         }
 
@@ -22,7 +29,8 @@ namespace DefaultNamespace
             player.StopDashing();
             DisableTeleport();
             pairTeleportLight.DisableTeleport();
-            Invoke(nameof(DestroyPairTeleport) , 0.25f);
+            Invoke(nameof(DestroyPairTeleport) , 0.01f);
+            Instantiate(effectPrefab , player.transform.position , quaternion.identity);
             player.transform.position = pairTeleportLight.transform.position;
         }
 

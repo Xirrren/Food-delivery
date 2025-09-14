@@ -33,7 +33,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     private int playerIndex;
 
-    
+    [SerializeField]
+    private Animator animator;
 
 #endregion
 
@@ -41,6 +42,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
+        animator.Play("Idle");
         rb          = GetComponent<Rigidbody2D>();
         canDash     = true;
         canMove     = true;
@@ -51,6 +53,8 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Update()
     {
+        PlayAnimationIfNotPlay(rb.velocity == Vector2.zero ? "Idle" : "Move");
+
         if (canMove == false) return;
         var horizontal = Input.GetAxisRaw($"Horizontal{playerIndex}");
         var vertical   = Input.GetAxisRaw($"Vertical{playerIndex}");
@@ -62,6 +66,11 @@ public class PlayerCharacter : MonoBehaviour
             isDashing = true;
             Invoke(nameof(ResetDashCooldown) , dashCooldown);
         }
+    }
+
+    private void PlayAnimationIfNotPlay(string animationName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName) == false) animator.Play(animationName);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
