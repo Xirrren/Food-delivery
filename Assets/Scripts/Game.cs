@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
 {
@@ -16,7 +17,16 @@ namespace DefaultNamespace
         {
             if (gameOver) return;
             gameOver = true;
-            Debug.Log($"GameOver");
+            Invoke(nameof(GotoTitleScreen) , 3f);
+        }
+
+    #endregion
+
+    #region Private Methods
+
+        private void GotoTitleScreen()
+        {
+            SceneManager.LoadScene("TitleScene");
         }
 
     #endregion
