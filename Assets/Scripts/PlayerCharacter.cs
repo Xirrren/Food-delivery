@@ -77,12 +77,21 @@ public class PlayerCharacter : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName) == false) animator.Play(animationName);
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.TryGetComponent<Food>(out var food))
+        {
+            Debug.Log($"got food");
+            GotFood();
+        } 
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (!isDashing) return;
         if (foodInHand) return;
-        if (col.gameObject.TryGetComponent(out food)) GotFood();
-        if (col.gameObject.TryGetComponent(out PlayerCharacter player))
+        
+        if (col.gameObject.TryGetComponent<PlayerCharacter>(out var player))
         {
             if (player.foodInHand == false) return;
             player.DropFood();
@@ -99,6 +108,7 @@ public class PlayerCharacter : MonoBehaviour
     private void DropFood()
     {
         foodInHand = false;
+        food.SetActive(false);
     }
 
 #endregion
@@ -141,5 +151,11 @@ public class PlayerCharacter : MonoBehaviour
     private void EnableCanMove()
     {
         canMove = true;
+    }
+
+    public void HideFood()
+    {
+        foodInHand = false;
+        food.SetActive(false);
     }
 }
