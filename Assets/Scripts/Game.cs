@@ -17,6 +17,7 @@ namespace DefaultNamespace
         {
             if (gameOver) return;
             gameOver = true;
+            Settlement.instance.ScoreSettlement();
             Invoke(nameof(GotoTitleScreen) , 3f);
         }
 

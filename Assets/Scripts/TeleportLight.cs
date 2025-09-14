@@ -31,6 +31,7 @@ namespace DefaultNamespace
             pairTeleportLight.DisableTeleport();
             Invoke(nameof(DestroyPairTeleport) , 0.01f);
             Instantiate(effectPrefab , player.transform.position , quaternion.identity);
+            Instantiate(effectPrefab , pairTeleportLight.transform.position , quaternion.identity);
             player.transform.position = pairTeleportLight.transform.position;
         }
 
