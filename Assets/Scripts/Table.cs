@@ -56,17 +56,21 @@ public class Table : MonoBehaviour
         {
             if (child.CompareTag("dining"))
             {
-                child.gameObject.SetActive(true);
-                StartCoroutine(DeactivateAfterTime(child.gameObject,duration));
+                ParticleSystem ps = child.GetComponent<ParticleSystem>();
+                if (ps != null)
+                {
+                    ps.Play();
+                }
+                StartCoroutine(DeactivateAfterTime(ps,duration));
             }
         }
         yield return null;
     }
 
-    IEnumerator DeactivateAfterTime(GameObject obj, float duration)
+    IEnumerator DeactivateAfterTime(ParticleSystem ps, float duration)
     {
         yield return new WaitForSeconds(duration);
-        obj.SetActive(false);
+        ps.Stop();
     }
 
 }

@@ -68,7 +68,7 @@ public class AudioMgr : MonoBehaviour
         bgmSource.volume = bgmSlider.value;
         foreach (var sfx in sfxSources)
             sfx.volume = sfxSlider.value;
-
+        
         bgmSlider.value = bgmVolume;
         sfxSlider.value = sfxVolume;
         bgmSource.volume = bgmVolume;

@@ -76,6 +76,7 @@ public class OrderingController : MonoBehaviour
         currentChild.SetActive(false);
         Table.instance.DiningEffect();
         MealDeliveryControl.instance.DestroyFood();
+        AudioMgr.Instance.PlaySFX(AudioMgr.SFXType.Place);
         cooldowns[currentChild.transform.parent.gameObject] = Time.time + orderCooling;
         StartCoroutine(showRandomChild());
     }
